@@ -14,13 +14,18 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 include_directories("src")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# STS-LIB #
+# CEPHES-LIB #
+file(GLOB_RECURSE cephes_src "src/cephes/cephes.cpp")
+add_library(cephes_lib STATIC ${cephes_src})
+
+# CPU-TESTS-LIB #
 file(GLOB_RECURSE cpu_tests_src "src/cpu_tests/*.cpp")
-add_library(cpu_lib STATIC ${cpu_tests_src})
+add_library(cpu_tests_lib STATIC ${cpu_tests_src})
+target_link_libraries(cpu_tests_lib PRIVATE cephes_lib)
 
 file(GLOB main_src "src/main.cpp")
 add_executable(sts ${main_src})
-target_link_libraries(sts PRIVATE cpu_lib)
+target_link_libraries(sts PRIVATE cpu_tests_lib)
 
 # # STS-UT.EXE #
 # file(GLOB_RECURSE ut_src "src/tests/*_ut.cpp")
