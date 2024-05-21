@@ -15,7 +15,7 @@ include_directories("src")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # STS-LIB #
-file(GLOB_RECURSE cpu_tests_src "src/cpu/*.cpp")
+file(GLOB_RECURSE cpu_tests_src "src/cpu_tests/*.cpp")
 add_library(cpu_lib STATIC ${cpu_tests_src})
 
 file(GLOB main_src "src/main.cpp")

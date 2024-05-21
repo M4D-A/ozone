@@ -1,4 +1,4 @@
-#include "cpu/frequency/frequency.hpp"
+#include "cpu_tests/frequency/frequency.hpp"
 #include <iostream>
 #include <vector>
 
