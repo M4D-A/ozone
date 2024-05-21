@@ -18,10 +18,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE cephes_src "src/cephes/cephes.cpp")
 add_library(cephes_lib STATIC ${cephes_src})
 
+# UTILS-LIB #
+file(GLOB_RECURSE utils_src "src/utils/utils.cpp")
+add_library(utils_lib STATIC ${utils_src})
+
 # CPU-TESTS-LIB #
 file(GLOB_RECURSE cpu_tests_src "src/cpu_tests/*.cpp")
 add_library(cpu_tests_lib STATIC ${cpu_tests_src})
-target_link_libraries(cpu_tests_lib PRIVATE cephes_lib)
+target_link_libraries(cpu_tests_lib PRIVATE cephes_lib utils_lib)
 
 file(GLOB main_src "src/main.cpp")
 add_executable(sts ${main_src})
